@@ -1,0 +1,30 @@
+<!-- a form to log in. Requires an email and a password. If login will fail due to invalid email/password combination the user will be prompt with
+an error message-->
+<head>
+</head>
+
+<body>
+
+  <div class="row">
+    <div class=" hero-unit">
+      <%= image_tag("notes.png", :alt => "notes") %>
+    </div>
+
+    <div class="span5 offset7">
+    <h1> <%= image_tag("key.png", :alt => "key") %> Sign in</h1>
+      <%= flash[:error] %>
+      <%= form_for(:session, url: sessions_path) do |f| %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <br>
+
+        <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+        <p>New user? <%= link_to "Sign up now!", "users/new" %></p>
+     <% end %>
+    </div>
+  </div>
+</body>

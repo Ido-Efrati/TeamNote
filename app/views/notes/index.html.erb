@@ -1,0 +1,51 @@
+<head>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</head>
+<body>
+  <!-- users can sign out or create a new note -->
+  <div class="span2 newNotebtn" ><%= link_to image_tag("new.png") + "New Note" , new_note_path , :class => 'icon btn btn-info' %></div>
+  <div class="span11" ><%= link_to image_tag("permission.png") + "Edit Permissions" , accessors_path , :class => 'icon btn btn-info' %></div>
+  <div class="span12"></div>
+  <div class="sapn1 signOutBtn" > <%= link_to "Sign out", signout_path, :class => ' btn btn-info btn-large ' , :method => "delete" %> </div>
+
+  <h1 class="center"><%=current_user.name %>'s notes</h1>
+  <!-- creates each note as an li with a div in it. li represnets a note's block and the div is the entire content in that block
+      text and icons. In addition add drag capability to each note -->
+
+  <div>
+    <ul>
+      <% @notes.each do |note| %>
+      <li >
+        <span class="draggable">    
+          <p><strong>Title:</strong><%= note.title %></p>
+          <p><strong>User:</strong><%= User.find(note.user_id).name %></p> <!-- the note's owner -->
+          <div  class="textAreaStyle"><%= note.content %></div>
+          <p> <%= link_to image_tag("grant.png"), new_accessor_path(:note_id =>note.id), :class => 'icon'%><%= link_to 'Share', new_accessor_path(:note_id =>note.id), :class => 'text' %>
+            <%= link_to image_tag("edit.png"), edit_note_path(note), :class => 'icon' %><%= link_to 'Edit', edit_note_path(note), :class => 'text' %>
+            <%= link_to image_tag("delete.png"), note, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'icon'%><%= link_to 'Delete', note, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'text' %>
+          </p>
+        </span>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+<!-- using ajax call the partial view to render it every 5 sec
+passing local variables to prevent global variables exposure to the partial  -->
+<%= render partial: 'shared_notes', locals: {can_edit_notes: @canEditNotes, can_view_notes: @canView}%>
+
+</body>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    setInterval(refreshDiv, 5000); 
+  });
+
+  function refreshDiv(){
+    $.ajax({
+      url: "notes",
+      dataType: "script"
+     });
+  }
+</script>

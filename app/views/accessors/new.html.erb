@@ -1,0 +1,29 @@
+<!-- A grant permission form. The form allows the user to grant either a read only or read and write permission to one user-->
+
+<div class="row">
+  <div class="span6 offset7">
+    <h1> <%= image_tag("eye.png", :alt => "50note") %>  Grant Permission</h1>
+      <%= form_for @accessor do |f| %>
+        <%= f.hidden_field :note_id, :value => @note_id%>
+        <%= f.label :accessor_id ,"Grant Permission To:"%>
+        <%= f.collection_select(:accessor_id, User.select(:email).where("email !=?" , current_user.email),:email ,:email) %>
+        <br>
+        
+        <div>
+          <div class="accessForm"><%= label :access_rights, "Read Only" %></div>
+          <%= f.radio_button :access_rights, false , :checked => true , :value => false %>
+        </div>
+
+        <br>
+
+        <div>
+          <div class="accessForm"><%= label :access_rights, "Read and Write"%></div>
+          <%= f.radio_button :access_rights, true, :value => true%>
+        </div>
+
+        <br>
+
+        <%= f.submit "Grant Permission", class: "btn btn-large btn-primary" %>
+      <% end %>
+  </div>
+</div>

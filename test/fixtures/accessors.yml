@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  note_id: MyString
+  : 
+  accessor_id: MyString
+  : 1
+  ,: MyString
+  can_read: MyString
+  : false
+  ,: MyString
+  can_edit: MyString
+  : false
+
+two:
+  note_id: MyString
+  : 
+  accessor_id: MyString
+  : 1
+  ,: MyString
+  can_read: MyString
+  : false
+  ,: MyString
+  can_edit: MyString
+  : false

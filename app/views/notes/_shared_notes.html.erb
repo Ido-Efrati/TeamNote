@@ -1,0 +1,26 @@
+
+<div id="shared_notes_div">
+  <ul>
+    <% can_edit_notes.each do |elem| %>
+    <li>
+      <span class="draggable">    
+        <p><strong>Title:</strong><%= elem.note.title %></p>
+        <p><strong>Owner:</strong><%= User.find(elem.note.user_id).name %></p> 
+        <div class="textAreaStyle"><%= elem.note.content %></div>
+        <p><%= link_to image_tag("edit.png"), edit_note_path(elem.note), :class => 'icon' %><%= link_to 'Edit', edit_note_path(elem.note), :class => 'text' %>
+        </p>
+      </span>
+    </li>
+   <% end %>
+
+  <% can_view_notes.each do |elem| %>
+  <li>
+    <span class="draggable">    
+      <p><strong>Title:</strong><%= elem.note.title %></p>
+      <p><strong>Owner:</strong><%= User.find(elem.note.user_id).name %></p> 
+      <div class="textAreaStyle"><%= elem.note.content %></div>   
+    </span>
+  </li>
+  <% end %>
+  </ul>
+</div>

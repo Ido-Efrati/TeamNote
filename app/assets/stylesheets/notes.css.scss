@@ -1,0 +1,64 @@
+// Place all the styles related to the Notes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.noteClass{  
+  background:#ffc;  
+  width:15em;  
+  height:15em;
+  box-shadow: 10px 10px 5px #888888;  
+}  
+
+.pushIcons{
+padding-top:25px;
+}
+
+ul,li{  
+  list-style:none;  
+}  
+ul{  
+  overflow:hidden;  
+  padding:3em;  
+}  
+
+ul li span {  
+  display:block;  
+  height:15em;  
+  width:19em;  
+  padding:1em; 
+  box-shadow: 10px 10px 5px #888888;   
+}
+
+ul li:nth-child(even) span{  
+  -o-transform:rotate(-3deg);  
+  -webkit-transform:rotate(-3deg);  
+  -moz-transform:rotate(-3deg);  
+  background:#ffc;  
+
+}  
+
+ul li:nth-child(odd) span{  
+  -o-transform:rotate(3deg);  
+  -webkit-transform:rotate(3deg);  
+  -moz-transform:rotate(3deg);  
+  background:#cfc;  
+
+}  
+
+ul li:nth-child(3n) span{  
+  background:#ccf;  
+
+}  
+
+ul li {  
+  margin:1em;  
+  float:left;  
+}  
+
+.signOutBtn{
+  padding-right:50px;}
+
+
+.newNotebtn{
+  padding-left:50px;}
+
+

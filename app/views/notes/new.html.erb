@@ -1,0 +1,10 @@
+<!-- renders the form that let users create their notes-->
+<div class="row">
+	<div class="span6 offset7">
+		<h1> <%= image_tag("50note.png", :alt => "50note") %> New Note</h1>
+
+		<%= render 'form' %>
+
+		<%= link_to image_tag("back.png"), notes_path, :class =>'icon' %><%= link_to 'Back', notes_path, :class =>'text' %>
+	</div>
+</div>

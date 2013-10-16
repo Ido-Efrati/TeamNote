@@ -1,0 +1,62 @@
+<head>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</head>
+
+<body>
+  <div class="sapn1 offset1" >  <%= link_to image_tag("back.png") + "Back" , notes_path , :class => 'icon btn btn-info' %> </div>
+
+  <h1 class="center"><%=current_user.name %>'s permissions</h1>
+  <!-- creates a table with all the permissions the current user granted. The user can view them or delete them if he or she no longer want to share
+  a note with another user -->
+  <h2 class="center">Granted to:</h1>
+  <table  class="accessTable">  
+    <thead>
+      <tr>
+        <th class="accessHeader">Note</th>
+        <th class="accessHeader">Granted to</th>
+        <th class="accessHeader">Permissions</th>
+      </tr>
+    </thead>
+    <tbody >
+      <% @accessors.each do |accessor| %>
+        <tr>    
+          <td class="accessCell"><%= Note.find(accessor.note_id).title%></td>
+          <td class="accessCell"><%= User.find(accessor.accessor_id).email%></td>
+          <!-- check if read only or read and write -->
+          <% if accessor.access_rights %>
+            <td><%= image_tag("read.png", :alt => "read") %> <%= image_tag("write.png", :alt => "write") %></td>
+          <% else %>
+            <td><%= image_tag("read.png", :alt => "read") %></td>
+          <%end%>
+          <td><%= link_to 'Delete', accessor, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'text' %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!-- creates a table with all the permissions the current user got from other users. The user can view them or delete them if he or she no longer want to have permission to a shared note-->
+  <h2 class="center">Granted by:</h1>
+  <table class="accessTable">
+    <thead >
+      <tr>
+        <th class="accessHeader">Note</th>
+        <th class="accessHeader">Granted by</th>
+        <th class="accessHeader">Permissions</th>
+      </tr>
+    </thead>
+    <tbody >
+      <% @accessors_by_others.each do |accessor| %>
+        <tr>    
+          <td class="accessCell"><%= Note.find(accessor.note_id).title%></td>
+          <td class="accessCell"><%= User.find(accessor.access_owner).email%></td>
+          <% if accessor.access_rights %>
+            <td><%= image_tag("read.png", :alt => "read") %> <%= image_tag("write.png", :alt => "write") %></td>
+          <% else %>
+            <td><%= image_tag("read.png", :alt => "read") %></td>
+          <%end%>
+          <td><%= link_to 'Delete', accessor, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'text' %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>

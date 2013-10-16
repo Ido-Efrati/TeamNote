@@ -1,0 +1,23 @@
+// Place all the styles related to the Accessors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.accessTable{
+	margin:0px auto; 
+	width:700px;
+}
+
+.accessHeader{
+	text-align:left;
+}
+
+.accessCell{
+	width:200px;
+}
+
+.accessForm{
+	width: 10em; 
+	float: left; 
+	text-align: right; 
+	margin-right: 0.5em; 
+	display: block
+}

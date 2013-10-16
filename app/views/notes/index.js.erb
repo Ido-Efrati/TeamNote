@@ -1,0 +1,2 @@
+$('#shared_notes_div').html('<%= j(render partial: 'shared_notes', locals: {can_edit_notes: @canEditNotes, can_view_notes: @canView}) %>');
+$(".draggable").draggable();
